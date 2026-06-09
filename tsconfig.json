@@ -1,8 +1,11 @@
 {
     "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
         "rootDir": "./src",
         "outDir": "./dist",
-        "target": "esnext"
+        "target": "esnext",
+        "types": ["jquery"]
     },
     "include": [
         "src/**/*"
