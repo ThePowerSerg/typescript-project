@@ -18,28 +18,31 @@ const todoItems: Todo[] = [
     {id: 3, title: "Write an awesome app", status: TodoStatus.Todo},
 ]
 
-function addTodoItem(todo: string) {
-    const id = getNextId(todoItems)
-
-    console.log(id)
-
-    const newTodo = {
-        id: id, 
-        title: todo,
-        status: TodoStatus.Todo,
-        completedOn: new Date()
-    }
-
-    todoItems.push(newTodo)
-
-    return newTodo
-}
-
 function getNextId<T extends {id: number}>(items: T[]) {
     return items.reduce((max, x) => x.id > max ? x.id : max, 0) + 1
 }
 
+function createItem(title: string, status: TodoStatus, completedOn?: Date) {
+
+    const newTodo: Todo = {
+        id: getNextId(todoItems),
+        title: title,
+        status: status,
+        completedOn: completedOn
+    }
+
+    return newTodo
+}
+
+function addTodoItem(newTodo: Todo) {
+
+    todoItems.push(newTodo)
+}
+
+// create item
+const c = createItem("Serg", TodoStatus.InProgress)
+
 // add item
-const newTodo = addTodoItem("Buy stuff")
+addTodoItem(c)
 
 console.log(JSON.stringify(todoItems))

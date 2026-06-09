@@ -9,21 +9,23 @@ const todoItems = [
     { id: 2, title: "Learn TypeScript", status: TodoStatus.InProgress },
     { id: 3, title: "Write an awesome app", status: TodoStatus.Todo },
 ];
-function addTodoItem(todo) {
-    const id = getNextId(todoItems);
-    console.log(id);
-    const newTodo = {
-        id: id,
-        title: todo,
-        status: TodoStatus.Todo,
-        completedOn: new Date()
-    };
-    todoItems.push(newTodo);
-    return newTodo;
-}
 function getNextId(items) {
     return items.reduce((max, x) => x.id > max ? x.id : max, 0) + 1;
 }
+function createItem(title, status, completedOn) {
+    const newTodo = {
+        id: getNextId(todoItems),
+        title: title,
+        status: status,
+        completedOn: completedOn
+    };
+    return newTodo;
+}
+function addTodoItem(newTodo) {
+    todoItems.push(newTodo);
+}
+// create item
+const c = createItem("Serg", TodoStatus.InProgress);
 // add item
-const newTodo = addTodoItem("Buy stuff");
+addTodoItem(c);
 console.log(JSON.stringify(todoItems));
