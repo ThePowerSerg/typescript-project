@@ -1,3 +1,4 @@
+"use strict";
 var ContactStatus;
 (function (ContactStatus) {
     ContactStatus[ContactStatus["Inactive"] = 0] = "Inactive";

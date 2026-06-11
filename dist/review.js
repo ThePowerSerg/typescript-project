@@ -1,3 +1,4 @@
+"use strict";
 // Type inference. Typescript is able to infer the type (number) given the variable assignment.
 let x = 0;
 //same definition

@@ -1,3 +1,4 @@
+"use strict";
 var TodoStatus;
 (function (TodoStatus) {
     TodoStatus["Todo"] = "todo";
@@ -10,22 +11,18 @@ const todoItems = [
     { id: 3, title: "Write an awesome app", status: TodoStatus.Todo },
 ];
 function getNextId(items) {
-    return items.reduce((max, x) => x.id > max ? x.id : max, 0) + 1;
+    return Math.max(0, ...items.map(x => x.id)) + 1;
 }
-function createItem(title, status, completedOn) {
+function addTodoItem(title, status, completedOn) {
     const newTodo = {
         id: getNextId(todoItems),
-        title: title,
-        status: status,
-        completedOn: completedOn
+        title,
+        status,
+        completedOn
     };
+    todoItems.push(newTodo);
     return newTodo;
 }
-function addTodoItem(newTodo) {
-    todoItems.push(newTodo);
-}
-// create item
-const c = createItem("Serg", TodoStatus.InProgress);
 // add item
-addTodoItem(c);
+addTodoItem("Serg", TodoStatus.InProgress);
 console.log(JSON.stringify(todoItems));

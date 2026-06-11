@@ -1,3 +1,4 @@
+"use strict";
 // enum TodoStatus {
 //     Todo = "todo",
 //     InProgress = "in-progress",

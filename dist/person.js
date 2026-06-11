@@ -1,3 +1,4 @@
+"use strict";
 var PeopleStatus;
 (function (PeopleStatus) {
     PeopleStatus[PeopleStatus["Inactive"] = 0] = "Inactive";
