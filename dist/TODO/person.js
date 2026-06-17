@@ -1,19 +1,34 @@
 "use strict";
-var PeopleStatus;
-(function (PeopleStatus) {
-    PeopleStatus[PeopleStatus["Inactive"] = 0] = "Inactive";
-    PeopleStatus[PeopleStatus["Active"] = 1] = "Active";
-    PeopleStatus[PeopleStatus["New"] = 2] = "New";
-})(PeopleStatus || (PeopleStatus = {}));
-const p = {
-    id: 1234,
-    name: "Luis",
-    birthDate: new Date("10/10/2020"),
-    status: PeopleStatus.Active
+const ContactStatus = {
+    Inactive: 0,
+    Active: 1
 };
-function clone(source) {
-    return source;
+const myPerson = {
+    id: 1,
+    name: "Sergio",
+    birthDate: new Date("1/1/1981"),
+    street: "20 Franklin Rd",
+    city: "Nowell",
+    state: "MA",
+    zip: "02061-1541",
+    contactStatus: ContactStatus.Active
+};
+function getBirthDate(person) {
+    if (typeof person.birthDate === "number") {
+        return new Date(person.birthDate);
+    }
+    else if (typeof person.birthDate === "string") {
+        return Date.parse(person.birthDate);
+    }
+    else {
+        return person.birthDate;
+    }
 }
-const a = { id: 123, name: "Test", birthDate: new Date("10/10/2020"), status: PeopleStatus.New };
-const b = clone(a);
-console.log(b);
+let contact = {
+    id: 12345,
+    name: "Jimmy Johnson",
+    birthDate: 1540008000000,
+    contactStatus: ContactStatus.Active
+};
+const t = getBirthDate(contact);
+console.log(t);
