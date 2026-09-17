@@ -38,6 +38,18 @@ const myPerson: Person = {
     zip: "02061-1541",
     contactStatus: ContactStatus.Active
 }
+type Combined = Address["street" | "zip"]
+
+function printAddressPart(value: Combined) {
+    if (value === undefined) {
+        console.log("not provided")
+    } else {
+        console.log(value)
+    }
+}
+ printAddressPart(myPerson.street)
+ printAddressPart(myPerson.zip)
+
 
 function getBirthDate (person: Person) {
     if (typeof person.birthDate === "number") {
@@ -95,13 +107,12 @@ const getValue2 = (source: Person) => { return source.name }
 console.log(getValue(({id:12, name: "find"})))
 
 
-// returns the value based on given key/property name
-const getNewValue = <T>(source: T, pName: keyof T) => source[pName]
+// returns the value based on given key/property name. Extends means follow the T rules.
+const getNewValue = <T, V extends keyof T>(source: T, pName: V) => source[pName]
 
-function getNewValueFunc<T>(source: T, pName: keyof T) {
+function getNewValueFunc<T, V extends keyof T>(source: T, pName: V) {
     return source[pName]
 }
 
 const value = getNewValue({id:123, name: "serg"}, "name")
-
 console.log(value)
